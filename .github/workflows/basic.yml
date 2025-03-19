@@ -1,12 +1,7 @@
 name: iOS CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  tags:
-    - "*"
+  [push]
 
 # 设置权限，用于发布 Release
 permissions:
