@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
@@ -31,17 +31,17 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C0CB28252D8716590050CEEE /* MiniDemo */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
+			isa = PBXGroup;
 			path = MiniDemo;
 			sourceTree = "<group>";
 		};
 		C0CB28392D87165B0050CEEE /* MiniDemoTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
+			isa = PBXGroup;
 			path = MiniDemoTests;
 			sourceTree = "<group>";
 		};
 		C0CB28432D87165B0050CEEE /* MiniDemoUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
+			isa = PBXGroup;
 			path = MiniDemoUITests;
 			sourceTree = "<group>";
 		};
@@ -107,9 +107,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				C0CB28252D8716590050CEEE /* MiniDemo */,
-			);
 			name = MiniDemo;
 			packageProductDependencies = (
 			);
@@ -130,9 +127,6 @@
 			dependencies = (
 				C0CB28382D87165B0050CEEE /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				C0CB28392D87165B0050CEEE /* MiniDemoTests */,
-			);
 			name = MiniDemoTests;
 			packageProductDependencies = (
 			);
@@ -152,9 +146,6 @@
 			);
 			dependencies = (
 				C0CB28422D87165B0050CEEE /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				C0CB28432D87165B0050CEEE /* MiniDemoUITests */,
 			);
 			name = MiniDemoUITests;
 			packageProductDependencies = (
@@ -195,7 +186,7 @@
 			);
 			mainGroup = C0CB281A2D8716590050CEEE;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 56;
 			productRefGroup = C0CB28242D8716590050CEEE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

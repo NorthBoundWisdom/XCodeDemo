@@ -35,6 +35,9 @@ jobs:
         ruby-version: '3.0'
         bundler-cache: true
 
+    - name: Install xcpretty
+      run: gem install xcpretty
+
     - name: Cache SwiftPM dependencies
       uses: actions/cache@v4
       with:
@@ -50,6 +53,9 @@ jobs:
           swiftlint
         fi
 
+    - name: Prepare build directory
+      run: mkdir -p build
+
     - name: Build and Test
       uses: mxcl/xcodebuild@v3
       with:
@@ -60,15 +66,16 @@ jobs:
         code-coverage: true
         scheme: MiniDemo # 使用你的项目 scheme 名称
         warnings-as-errors: true
+        arguments: -resultBundlePath build/MiniDemo_${{ matrix.configuration }}.xcresult
 
     - name: Archive Test Results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: test-results-${{ matrix.configuration }}
+        name: test-results-${{ matrix.configuration }}-${{ github.run_id }}
         path: |
           build/reports
-          *.xcresult
+          build/**/*.xcresult
         retention-days: 5
 
     - name: Upload Code Coverage
@@ -117,20 +124,21 @@ jobs:
         action: build
         configuration: Release
         scheme: MiniDemo # 使用你的项目 scheme 名称
+        arguments: -archivePath build/MiniDemo.xcarchive
 
-    - name: Upload to TestFlight
-      if: success()
-      uses: apple-actions/upload-testflight-build@v1
-      with:
-        app-path: build/MiniDemo.ipa
-        issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-        api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
-        api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+    # - name: Upload to TestFlight
+    #   if: success()
+    #   uses: apple-actions/upload-testflight-build@v1
+    #   with:
+    #     app-path: build/MiniDemo.xcarchive/Products/Applications/MiniDemo.app
+    #     issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+    #     api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+    #     api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: build/MiniDemo.ipa
+        files: build/MiniDemo.xcarchive/Products/Applications/MiniDemo.app
         generate_release_notes: true
 
